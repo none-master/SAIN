@@ -45,14 +45,14 @@ if args.dataset == 'std12k':
 else:
     raise NotImplementedError
 
-if args.model == 'FCSIN':
-    from model.FCSIN import FCSIN
+if args.model == 'SAIN':
+    from model.SAIN import SAIN
 
 print("Building model: %s"%args.model)
-if args.model == 'FCSIN':
+if args.model == 'SAIN':
     args.device = device
     args.resume_flownet = False
-    model = FCSIN(args)
+    model = SAIN(args)
 
 model = torch.nn.DataParallel(model).to(device)
 total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)

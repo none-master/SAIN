@@ -310,9 +310,9 @@ class FlowRefineNet_Multis(nn.Module):
             flow = F.interpolate(flow, scale_factor=0.5, mode="bilinear", align_corners=False) * 0.5
         return outs
 
-class FCSIN(nn.Module):
+class SAIN(nn.Module):
     def __init__(self, args):
-        super(FCSIN, self).__init__()
+        super(SAIN, self).__init__()
         self.phase = args.phase
         self.device = args.device
         c = 24
@@ -443,25 +443,3 @@ class FCSIN(nn.Module):
             return pred
         else:
             return pred
-
-
-if __name__ == "__main__":
-
-    import argparse
-
-    parser = argparse.ArgumentParser(description='test')
-    parser.add_argument('--phase', default='train', type=str)
-    parser.add_argument('--device', default='cuda', type=str)
-    parser.add_argument('--crop_size', default=192, type=int)
-    args = parser.parse_args()
-
-    device = 'cuda'
-
-    net = Swin_Fuse_CrossScaleV2_MaskV5_Normal_WoRefine_ConvBaseline(args).to(device)
-    print('----- generator parameters: %f -----' % (sum(param.numel() for param in net.parameters()) / (10 ** 6)))
-
-    w = 192
-    img0 = torch.randn((2, 3, w, w)).to(device)
-    img1 = torch.randn((2, 3, w, w)).to(device)
-    out = net(img0, img1)
-    print(out[0].size())

@@ -15,8 +15,8 @@ data_arg.add_argument('--data_root', type=str, default='/std12k_points')
 
 # Model
 model_arg = add_argument_group('Model')
-model_choices = ["FCSIN"]
-model_arg.add_argument('--model', choices=model_choices, type=str, default="FCSIN")
+model_choices = ["SAIN"]
+model_arg.add_argument('--model', choices=model_choices, type=str, default="SAIN")
 model_arg.add_argument('--nbr_frame' , type=int , default=2)
 model_arg.add_argument('--joinType' , choices=["concat" , "add" , "none"], default="concat")
 

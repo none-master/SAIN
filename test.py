@@ -44,14 +44,14 @@ if args.dataset == 'std12k':
 else:
     raise NotImplementedError
 
-if args.model == 'FCSIN':
-    from model.FCSIN import FCSIN
+if args.model == 'SAIN':
+    from model.SAIN import SAIN
 
 print("Building model: %s"%args.model)
-if args.model == 'FCSIN':
+if args.model == 'SAIN':
     args.device = device
     args.resume_flownet = False
-    model = FCSIN(args)
+    model = SAIN(args)
 
 model = torch.nn.DataParallel(model).to(device)
 total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -82,7 +82,7 @@ def testt(args, epoch):
             gt = gt_image.to(device)
             for idx in range(out.size()[0]):
                 os.makedirs(args.result_dir + '/' + datapath[idx])
-                imwrite(out[idx], args.result_dir + '/' + datapath[idx] + '/fcsin.png')
+                imwrite(out[idx], args.result_dir + '/' + datapath[idx] + '/sain.png')
 
             # Save loss values
             loss, loss_specific = criterion(out, gt)
@@ -106,8 +106,6 @@ def print_log(epoch, num_epochs, one_epoch_time, oup_pnsr, oup_ssim, Lr):
             'Date: {0}s, Time_Cost: {1:.0f}s, Epoch: [{2}/{3}], Val_PSNR:{4:.2f}, Val_SSIM:{5:.4f}, Lr:{6}'
             .format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
                     one_epoch_time, epoch, num_epochs, oup_pnsr, oup_ssim, Lr), file=f)
-
-
 
 """ Entry Point """
 def main(args):

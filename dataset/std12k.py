@@ -7,13 +7,6 @@ import numpy as np
 
 class STD12k(Dataset):
     def __init__(self, data_root, is_training , input_frames="1357", mode='mini'):
-        """
-        Creates a Vimeo Septuplet object.
-        Inputs.
-            data_root: Root path for the Vimeo dataset containing the sep tuples.
-            is_training: Train/Test.
-            input_frames: Which frames to input for frame interpolation network.
-        """
         self.data_root = data_root
         self.region_root = data_root
         self.training = is_training
@@ -41,7 +34,7 @@ class STD12k(Dataset):
 
             region13 = os.path.join(self.region_root, d, 'guide_flo13.npy')
             region31 = os.path.join(self.region_root, d, 'guide_flo31.npy')
-            # data_list.append([img0, img1, points14, points12, points34, gt, d])
+
             data_list.append([img0, img1, points14, points12, points34, gt, d, region13, region31])
 
         self.data_list = data_list
@@ -107,5 +100,5 @@ def get_loader(mode, data_root, batch_size, shuffle, num_workers, test_mode=None
 
 if __name__ == "__main__":
 
-    dataset = ATD12k("/atd12k_points", is_training=False)
+    dataset = STD12k("/atd12k_points", is_training=False)
     dataloader = DataLoader(dataset, batch_size=100, shuffle=False, num_workers=32, pin_memory=True)
