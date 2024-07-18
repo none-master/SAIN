@@ -1,17 +1,16 @@
-# FC-SIN
+# SAIN
 
-The repo is the official code implementation of FC-SIN
+The repo is the code implementation of SAIN
 
 ## Training
 Download the dataset and use the following scripts.
 ```
-python main.py --data_root /path/to/atd12k_points --batch_size 4 --test_batch_size 4 --loss 0.7*L1+0.3*LPIPS
+python main.py --data_root /path/to/std12k_points --batch_size 4 --test_batch_size 4 --loss 0.7*L1+0.3*LPIPS
 ```
 
 ## Dataset
 Our dataset can be downloaded in the following link.
-[Link](https://pan.baidu.com/s/17x0aBshLbM0OXqe0SxHvog)  
-Code: ufqn
+[google drive](https://drive.google.com/file/d/1vyu_ePFN9sFjqxc-sPdSWuSCLnWFVUT7/view?usp=sharing)
 
 ## Reference
 Some great video interpolation resources that we benefit from:
