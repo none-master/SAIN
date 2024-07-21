@@ -1,6 +1,9 @@
 # SAIN
 
-The repo is the code implementation of [SAIN](https://arxiv.org/abs/2308.13273)
+The repo is the code implementation for paper "Bridging the Gap: Sketch-Aware Interpolation Network
+for High-Quality Animation Sketch Inbetweening".
+
+[Paper](https://arxiv.org/abs/2308.13273)
 
 ## Training
 Download the dataset and use the following scripts.
