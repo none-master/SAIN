@@ -1,6 +1,6 @@
 # SAIN
 
-The repo is the code implementation of SAIN
+The repo is the code implementation of [SAIN](https://arxiv.org/abs/2308.13273)
 
 ## Training
 Download the dataset and use the following scripts.
@@ -20,3 +20,15 @@ Some great video interpolation resources that we benefit from:
 
 - AnimeInterp [Code](https://github.com/lisiyao21/AnimeInterp.git)
 - VFI-Transformer [Code](https://github.com/zhshi0816/Video-Frame-Interpolation-Transformer.git)
+
+## Citation
+
+```
+@inproceedings{,
+    title={},
+    author={ },
+    booktitle={},
+    year={}
+}
+
+```
