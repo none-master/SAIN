@@ -27,11 +27,11 @@ Some great video interpolation resources that we benefit from:
 ## Citation
 
 ```
-@inproceedings{,
-    title={},
-    author={ },
-    booktitle={},
-    year={}
+@inproceedings{shen2023sain,
+    title={Bridging the Gap: Sketch-Aware Interpolation Network for High-Quality Animation Sketch Inbetweening},
+    author={Jiaming Shen, Kun Hu, Wei Bao, Chang Wen Chen, and Zhiyong Wang},
+    Booktitle = {Proc. of ACM International Conference on Multimedia (MM’24)},
+    year={2024}
 }
 
 ```
