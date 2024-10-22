@@ -17,3 +17,4 @@ Some great video interpolation resources that we benefit from:
 
 - AnimeInterp [Code](https://github.com/lisiyao21/AnimeInterp.git)
 - VFI-Transformer [Code](https://github.com/zhshi0816/Video-Frame-Interpolation-Transformer.git)
+- EISAI [Code](https://github.com/ShuhongChen/eisai-anime-interpolator.git) 
