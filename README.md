@@ -15,6 +15,9 @@ python main.py --data_root /path/to/std12k_points --batch_size 4 --test_batch_si
 Our dataset can be downloaded in the following link.
 [google drive](https://drive.google.com/file/d/1vyu_ePFN9sFjqxc-sPdSWuSCLnWFVUT7/view?usp=sharing)
 
+The pre-trained model can be downloaded in the following link
+[google drive](https://drive.google.com/file/d/1bPvGtm9Ty-ALrHc_NdzJQUes8elOBZfa/view?usp=sharing)
+
 The training & test dataset containing region & stroke level correspondence data can be downloaded in the following link.
 [google drive](https://drive.google.com/file/d/1VMr2oPQCqUE579dnY4eFGGVAhrgjVR2V/view?usp=sharing)
 
