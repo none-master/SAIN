@@ -1,16 +1,29 @@
 import time
 
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = '1'
 import torch
 from tqdm import tqdm
 
 from torch.cuda.amp import autocast, GradScaler
 from torchvision.utils import save_image as imwrite
 
+import math
+from skimage.metrics import peak_signal_noise_ratio as psnr
+from skimage.metrics import mean_squared_error as mse
+import lpips
+from pytorch_msssim import ssim_matlab as ssim
+
+from PIL import Image, ImageFilter
+import numpy as np
+import torchvision.transforms as transforms
+import os
+from evaluation.distance_transform_v0 import ChamferDistance2dMetric
+import torch
+
 import config
 import myutils
 from loss import Loss
-import shutil
 
 def load_checkpoint(args, model, optimizer, path):
     print("loading checkpoint %s" % path)
@@ -65,6 +78,10 @@ optimizer = Adamax(model.parameters(), lr=args.lr, betas=(args.beta1, args.beta2
 
 scaler = GradScaler()
 
+def calc_psnr(pred, gt):
+    return -10 * math.log10(((pred - gt) * (pred - gt)).mean())
+
+
 def testt(args, epoch):
     print('Evaluating for epoch = %d' % epoch)
     losses, psnrs, ssims = myutils.init_meters(args.loss)
@@ -109,11 +126,54 @@ def print_log(epoch, num_epochs, one_epoch_time, oup_pnsr, oup_ssim, Lr):
 
 """ Entry Point """
 def main(args):
-    load_checkpoint(args, model, optimizer, save_loc+'/model_best.pth')
-    test_loss, psnr, ssim = testt(args, args.start_epoch)
-    print("psnr :{}, ssim:{}".format(psnr, ssim))
-    exit()
+    # load_checkpoint(args, model, optimizer, save_loc+'/model_best.pth')
+    # test_loss, psnr_val, ssim_val = testt(args, args.start_epoch)
+    # print("psnr :{}, ssim:{}".format(psnr_val, ssim_val))
 
+    i = 0
+
+    loss_fn_alex = lpips.LPIPS(net='alex')
+    transform = transforms.Compose([
+        transforms.PILToTensor()
+    ])
+    cd = ChamferDistance2dMetric()
+    torch.set_printoptions(precision=4)
+
+    psnrlistn = []
+    ssimlistn = []
+    ielistn = []
+    cdlistn = []
+
+    for root, dirs, files in os.walk(args.result_dir):
+
+        for dir in dirs:
+            pin = Image.open('{}/{}/sain.png'.format(args.result_dir,dir)).convert("RGB").resize((384, 192))
+            pred1n = transform(pin).unsqueeze(0).float() / 255.
+            predn = np.asarray(pin)
+
+            gi = Image.open('{}/test_2k_540p/{}/gt.png'.format(args.data_root,dir)).resize((384, 192))
+            gt1 = transform(gi).unsqueeze(0).float() / 255.
+            gt = np.asarray(gi)
+
+            i += 1
+
+            psnrlistn.append(psnr(predn, gt))
+            ielistn.append(math.sqrt(mse(predn, gt)))
+            cdlistn.append(cd.calc(pred1n, gt1))
+            ssimlistn.append(ssim(pred1n, gt1))
+
+            if i % 500 == 0:
+                print(i)
+
+    psnr_avgn = np.average(psnrlistn)
+    ie_avgn = np.average(ielistn)
+    cd_avgn = np.average(cdlistn)
+    ssim_avgn = np.average(ssimlistn)
+
+    print("cdval: {}".format(cd_avgn))
+    print("ssim: {}".format(ssim_avgn))
+    print("psnr: {}".format(psnr_avgn))
+    print("ie: {}".format(ie_avgn))
 
 if __name__ == "__main__":
     main(args)

@@ -1,10 +1,6 @@
 
-
-
-
-from util_v0 import *
-from pytorch_v0 import *
-
+from evaluation.util_v0 import *
+from evaluation.pytorch_v0 import *
 
 try:
     import igl
