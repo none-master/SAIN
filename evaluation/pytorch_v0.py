@@ -1,6 +1,4 @@
 
-
-
 try:
     import torch
     import torch.nn as nn
@@ -70,7 +68,6 @@ import math
 from twodee_v0 import *
 from PIL import Image
 # from torchmetrics.functional import structural_similarity_index_measure as calc_ssim
-
 
 #################### UTILITIES ####################
 

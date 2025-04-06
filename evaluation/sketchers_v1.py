@@ -1,7 +1,7 @@
 
 
 
-from pytorch_v0 import * ; import pytorch_v0 as utorch
+from evaluation.pytorch_v0 import *
 import kornia
 
 ###################### CANNY ######################
