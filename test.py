@@ -153,7 +153,7 @@ def main(args):
             pred1n = transform(pin).unsqueeze(0).float() / 255.
             predn = np.asarray(pin) / 255.
 
-            gi = Image.open('{}/{}/filename.png'.format( args.data_root,dir)).convert("RGB").resize((384, 192))
+            gi = Image.open('{}/test_2k_540p/{}/frame2.jpg'.format( args.data_root,dir)).convert("RGB").resize((384, 192))
             gt1 = transform(gi).unsqueeze(0).float() / 255.
             gt = np.asarray(gi) / 255.
 
