@@ -1,8 +1,6 @@
 
 
 
-from util_v0 import * ; import util_v0 as util
-from twodee_v0 import * ; import twodee_v0 as u2d
 from pytorch_v0 import * ; import pytorch_v0 as utorch
 import kornia
 
