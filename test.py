@@ -24,6 +24,8 @@ import config
 import myutils
 from loss import Loss
 
+os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+
 def load_checkpoint(args, model, optimizer, path):
     print("loading checkpoint %s" % path)
     checkpoint = torch.load(path)
