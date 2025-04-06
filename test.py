@@ -11,9 +11,7 @@ import math
 from skimage.metrics import peak_signal_noise_ratio as psnr
 from skimage.metrics import mean_squared_error as mse
 import lpips
-from sklearn.metrics import mean_squared_error
 from pytorch_msssim import ssim_matlab as ssim
-import scipy.stats as stats
 
 from PIL import Image, ImageFilter
 import numpy as np
@@ -25,7 +23,6 @@ import torch
 import config
 import myutils
 from loss import Loss
-import shutil
 
 def load_checkpoint(args, model, optimizer, path):
     print("loading checkpoint %s" % path)
@@ -128,9 +125,9 @@ def print_log(epoch, num_epochs, one_epoch_time, oup_pnsr, oup_ssim, Lr):
 
 """ Entry Point """
 def main(args):
-    load_checkpoint(args, model, optimizer, save_loc+'/model_best.pth')
-    test_loss, psnr, ssim = testt(args, args.start_epoch)
-    print("psnr :{}, ssim:{}".format(psnr, ssim))
+    # load_checkpoint(args, model, optimizer, save_loc+'/model_best.pth')
+    # test_loss, psnr_val, ssim_val = testt(args, args.start_epoch)
+    # print("psnr :{}, ssim:{}".format(psnr_val, ssim_val))
 
     i = 0
 
