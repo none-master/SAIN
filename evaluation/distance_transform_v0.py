@@ -1,7 +1,7 @@
 
 import torchmetrics
 import evaluation.sketchers_v1 as usketchers
-
+import torch
 
 ############### DISTANCE TRANSFORM ###############
 
