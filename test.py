@@ -150,7 +150,8 @@ def main(args):
             pred1n = transform(pin).unsqueeze(0).float() / 255.
             predn = np.asarray(pin)
 
-            gi = Image.open('{}/test_2k_540p/{}/frame2.jpg'.format( args.data_root,dir)).resize((384, 192))
+            # gi = Image.open('{}/test_2k_540p/{}/frame2.jpg'.format( args.data_root,dir)).resize((384, 192))
+            gi = Image.open('/home/kuhu6123/eccvoutput2/{}/eccvgt.png'.format(dir)).resize((384, 192))
             gt1 = transform(gi).unsqueeze(0).float() / 255.
             gt = np.asarray(gi)
 
