@@ -65,7 +65,7 @@ except:
 
 # from pytorch_msssim import ssim as calc_ssim
 import math
-from twodee_v0 import *
+from evaluation.twodee_v0 import *
 from PIL import Image
 # from torchmetrics.functional import structural_similarity_index_measure as calc_ssim
 
