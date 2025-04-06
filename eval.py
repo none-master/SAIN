@@ -41,7 +41,7 @@ ssimlistn = []
 ielistn = []
 cdlistn = []
 
-for root,dirs,files in os.walk("emavfi"):
+for root,dirs,files in os.walk("result"):
 
     for dir in dirs:
         pio = Image.open('result/{}/sain.png'.format(dir)).convert("RGB").resize((384, 192))
