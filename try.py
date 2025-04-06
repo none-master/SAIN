@@ -10,7 +10,7 @@ transform = transforms.Compose([
 ])
 torch.set_printoptions(precision=4)
 
-dir = 'Disney_v4_0_000024_s2'
+dir = 'Japan_v2_1_091863_s3'
 pio = Image.open('result/{}/sain.png'.format(dir)).convert("RGB").resize((384, 192))
 predo = np.asarray(pio)
 
