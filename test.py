@@ -126,13 +126,12 @@ def print_log(epoch, num_epochs, one_epoch_time, oup_pnsr, oup_ssim, Lr):
 
 """ Entry Point """
 def main(args):
-    # load_checkpoint(args, model, optimizer, save_loc+'/model_best.pth')
-    # test_loss, psnr_val, ssim_val = testt(args, args.start_epoch)
-    # print("psnr :{}, ssim:{}".format(psnr_val, ssim_val))
+    load_checkpoint(args, model, optimizer, save_loc+'/model_best.pth')
+    test_loss, psnr_val, ssim_val = testt(args, args.start_epoch)
+    print("psnr :{}, ssim:{}".format(psnr_val, ssim_val))
 
     i = 0
 
-    loss_fn_alex = lpips.LPIPS(net='alex')
     transform = transforms.Compose([
         transforms.PILToTensor()
     ])
@@ -170,7 +169,7 @@ def main(args):
     cd_avgn = np.average(cdlistn)
     ssim_avgn = np.average(ssimlistn)
 
-    print("cdval: {}".format(cd_avgn))
+    print("cd: {}".format(cd_avgn))
     print("ssim: {}".format(ssim_avgn))
     print("psnr: {}".format(psnr_avgn))
     print("ie: {}".format(ie_avgn))
